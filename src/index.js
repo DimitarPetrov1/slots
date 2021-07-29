@@ -26,7 +26,7 @@ function winningCombinations() {
   // Check if last 3 numbers in the columns match
   COL1.innerHTML = `${generateColumn().map((i) => {
     if (i === 1) {
-      return `<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png' width='20px' height='20px' alt=''>`;
+      return `<img src='img/apple.png' alt=''>`;
     } else {
       return null;
     }
