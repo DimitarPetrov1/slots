@@ -25,12 +25,22 @@
 }
 
 .column {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
   background: rgb(153, 50, 50);
   padding: 20px;
   margin: 4px;
   color: transparent;
   position: relative;
   left: 0;
+}
+
+.column img {
+  transform: rotate(90deg);
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 #col1 {

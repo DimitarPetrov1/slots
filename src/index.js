@@ -1,5 +1,15 @@
 import "./styles.css";
 import generateColumn from "./generateColumn";
+import {
+  apple,
+  cherry,
+  grapes,
+  lemon,
+  orange,
+  plum,
+  watermelon,
+  seven
+} from "./data";
 
 let BALANCE = 100;
 
@@ -7,10 +17,6 @@ let BALANCE = 100;
 const COL1 = document.getElementById("col1");
 const COL2 = document.getElementById("col2");
 const COL3 = document.getElementById("col3");
-
-COL1.innerHTML = [12, 3, 4, 6, 7, 8, 5, 6, 7];
-COL2.innerHTML = [12, 3, 4, 6, 7, 8, 5, 6, 7];
-COL3.innerHTML = [12, 3, 4, 6, 7, 8, 5, 6, 7];
 
 // Show balance
 const targetBalance = document.getElementById("score");
@@ -25,39 +31,79 @@ playButton.addEventListener("click", () => {
 function winningCombinations() {
   // Check if last 3 numbers in the columns match
   COL1.innerHTML = `${generateColumn().map((i) => {
-    if (i === 1) {
-      return `<img src='img/apple.png' alt=''>`;
+    if (i === 0) {
+      return `<img src='${apple}' alt='${i}'>`;
+    } else if (i === 1) {
+      return `<img src='${cherry}' alt='${i}'>`;
+    } else if (i === 2) {
+      return `<img src='${grapes}' alt='${i}'>`;
+    } else if (i === 3) {
+      return `<img src='${lemon}' alt='${i}'>`;
+    } else if (i === 4) {
+      return `<img src='${orange}' alt='${i}'>`;
+    } else if (i === 5) {
+      return `<img src='${plum}' alt='${i}'>`;
+    } else if (i === 6) {
+      return `<img src='${watermelon}' alt='${i}'>`;
+    } else if (i === 7) {
+      return `<img src='${seven}' alt='${i}'>`;
     } else {
-      return null;
+      return i;
     }
-    // return i;
   })}`;
   COL2.innerHTML = `${generateColumn().map((i) => {
-    // if (i === 1) {
-    //   return `<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png' width='10px' height='10px' alt=''>`;
-    // } else {
-    //   return null;
-    // }
-    return i;
+    if (i === 0) {
+      return `<img src='${apple}' alt='${i}'>`;
+    } else if (i === 1) {
+      return `<img src='${cherry}' alt='${i}'>`;
+    } else if (i === 2) {
+      return `<img src='${grapes}' alt='${i}'>`;
+    } else if (i === 3) {
+      return `<img src='${lemon}' alt='${i}'>`;
+    } else if (i === 4) {
+      return `<img src='${orange}' alt='${i}'>`;
+    } else if (i === 5) {
+      return `<img src='${plum}' alt='${i}'>`;
+    } else if (i === 6) {
+      return `<img src='${watermelon}' alt='${i}'>`;
+    } else if (i === 7) {
+      return `<img src='${seven}' alt='${i}'>`;
+    } else {
+      return i;
+    }
   })}`;
   COL3.innerHTML = `${generateColumn().map((i) => {
-    // if (i === 1) {
-    //   return `<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png' width='10px' height='10px' alt=''>`;
-    // } else {
-    //   return null;
-    // }
-    return i;
+    if (i === 0) {
+      return `<img src='${apple}' alt='${i}'>`;
+    } else if (i === 1) {
+      return `<img src='${cherry}' alt='${i}'>`;
+    } else if (i === 2) {
+      return `<img src='${grapes}' alt='${i}'>`;
+    } else if (i === 3) {
+      return `<img src='${lemon}' alt='${i}'>`;
+    } else if (i === 4) {
+      return `<img src='${orange}' alt='${i}'>`;
+    } else if (i === 5) {
+      return `<img src='${plum}' alt='${i}'>`;
+    } else if (i === 6) {
+      return `<img src='${watermelon}' alt='${i}'>`;
+    } else if (i === 7) {
+      return `<img src='${seven}' alt='${i}'>`;
+    } else {
+      return i;
+    }
   })}`;
   // Since there are commas the index is incramented + 1
-  let R1C1 = COL1.textContent[COL1.textContent.length - 1];
-  let R1C2 = COL2.textContent[COL2.textContent.length - 1];
-  let R1C3 = COL3.textContent[COL3.textContent.length - 1];
-  let R2C1 = COL1.textContent[COL1.textContent.length - 3];
-  let R2C2 = COL2.textContent[COL2.textContent.length - 3];
-  let R2C3 = COL3.textContent[COL3.textContent.length - 3];
-  let R3C1 = COL1.textContent[COL1.textContent.length - 5];
-  let R3C2 = COL2.textContent[COL2.textContent.length - 5];
-  let R3C3 = COL3.textContent[COL3.textContent.length - 5];
+  let R1C1 = COL1.children[0].getAttribute("alt");
+  let R1C2 = COL2.children[0].getAttribute("alt");
+  let R1C3 = COL3.children[0].getAttribute("alt");
+  let R2C1 = COL1.children[1].getAttribute("alt");
+  let R2C2 = COL2.children[1].getAttribute("alt");
+  let R2C3 = COL3.children[1].getAttribute("alt");
+  let R3C1 = COL1.children[2].getAttribute("alt");
+  let R3C2 = COL2.children[2].getAttribute("alt");
+  let R3C3 = COL3.children[2].getAttribute("alt");
+
   // Starting with dec the balance
   BALANCE--;
   // rows

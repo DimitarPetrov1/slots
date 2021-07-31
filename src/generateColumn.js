@@ -2,7 +2,7 @@ function generateColumn() {
   let arr = [];
   let luckyNumber = 1;
   // Here I can adjust the chances
-  for (let i = 1; i <= 8; i++) {
+  for (let i = 1; i <= 3; i++) {
     // ^^ number of numbers in array ^^
     let number = Math.floor(Math.random() * 5); // max value of the numbers we get
     arr.push(number);
