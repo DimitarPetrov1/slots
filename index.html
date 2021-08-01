@@ -15,8 +15,17 @@
         </div>
       </div>
       <div class="controls">
-        <button id="play">Play</button>
-        <div id="score">0</div>
+        <div class="bet-wrap">
+          <button class="btn btn-change-bet" id="lowerBet">-</button>
+          Bet:
+          <span id="bet"></span>
+          <button class="btn btn-change-bet" id="raiseBet">+</button>
+        </div>
+        <div class="balance-wrap">
+          Balance:
+          <span id="balance"></span>
+        </div>
+        <button class="btn" id="play">Spin</button>
       </div>
     </div>
     <script src="src/index.js"></script>

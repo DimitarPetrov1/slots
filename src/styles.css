@@ -1,12 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Orbitron", sans-serif;
 }
 
 #app {
   font-family: sans-serif;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bold;
   width: 400px;
   overflow: hidden;
@@ -15,7 +18,7 @@
 .slots-window-body {
   position: relative;
   height: 300px;
-  background: black;
+  background: rgb(245, 54, 54);
 }
 
 .slots-window {
@@ -26,14 +29,19 @@
 
 .column {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-content: center;
-  background: rgb(153, 50, 50);
+  background: rgb(255, 242, 170);
   padding: 20px;
   margin: 4px;
   color: transparent;
   position: relative;
   left: 0;
+  width: 300%;
+}
+
+.spin-start {
+  animation: colMove 1s;
 }
 
 .column img {
@@ -44,25 +52,58 @@
 }
 
 #col1 {
-  animation: colMove 0.4s;
+  animation-delay: 0s;
 }
 #col2 {
-  animation: colMove 0.6s;
+  animation-delay: 0.5s;
 }
 #col3 {
-  animation: colMove 0.8s;
+  animation-delay: 1s;
 }
 
 @keyframes colMove {
-  from {
-    left: 100%;
+  0% {
+    left: 0;
   }
-  to {
+  50% {
+    left: -120%;
+  }
+  60% {
+    left: -120%;
+  }
+  80% {
+    left: 100%;
+    opacity: 0;
+  }
+  100% {
     left: 0;
   }
 }
 
+/* Controls */
+
 .controls {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  color: rgb(67, 179, 67);
+  padding: 10px;
+  background: gray;
 }
+.bet-wrap,
+.balance-wrap {
+  background: black;
+  padding: 10px;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px;
+}
+
+.btn-change-bet {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+}
+/*  */

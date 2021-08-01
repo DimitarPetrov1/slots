@@ -11,22 +11,120 @@ import {
   seven
 } from "./data";
 
+let currentBet = 1;
 let BALANCE = 100;
+let delay = 1900;
 
 // Generate columns
-const COL1 = document.getElementById("col1");
-const COL2 = document.getElementById("col2");
-const COL3 = document.getElementById("col3");
+let COL1 = document.getElementById("col1");
+let COL2 = document.getElementById("col2");
+let COL3 = document.getElementById("col3");
 
-// Show balance
-const targetBalance = document.getElementById("score");
-targetBalance.textContent = BALANCE + "lv.";
-// Play button
+COL1.innerHTML = `${generateColumn().map((i) => {
+  if (i === 0) {
+    return `<img src='${apple}' alt='${i}'>`;
+  } else if (i === 1) {
+    return `<img src='${cherry}' alt='${i}'>`;
+  } else if (i === 2) {
+    return `<img src='${grapes}' alt='${i}'>`;
+  } else if (i === 3) {
+    return `<img src='${lemon}' alt='${i}'>`;
+  } else if (i === 4) {
+    return `<img src='${orange}' alt='${i}'>`;
+  } else if (i === 5) {
+    return `<img src='${plum}' alt='${i}'>`;
+  } else if (i === 6) {
+    return `<img src='${watermelon}' alt='${i}'>`;
+  } else if (i === 7) {
+    return `<img src='${seven}' alt='${i}'>`;
+  } else {
+    return i;
+  }
+})}`;
+COL2.innerHTML = `${generateColumn().map((i) => {
+  if (i === 0) {
+    return `<img src='${apple}' alt='${i}'>`;
+  } else if (i === 1) {
+    return `<img src='${cherry}' alt='${i}'>`;
+  } else if (i === 2) {
+    return `<img src='${grapes}' alt='${i}'>`;
+  } else if (i === 3) {
+    return `<img src='${lemon}' alt='${i}'>`;
+  } else if (i === 4) {
+    return `<img src='${orange}' alt='${i}'>`;
+  } else if (i === 5) {
+    return `<img src='${plum}' alt='${i}'>`;
+  } else if (i === 6) {
+    return `<img src='${watermelon}' alt='${i}'>`;
+  } else if (i === 7) {
+    return `<img src='${seven}' alt='${i}'>`;
+  } else {
+    return i;
+  }
+})}`;
+COL3.innerHTML = `${generateColumn().map((i) => {
+  if (i === 0) {
+    return `<img src='${apple}' alt='${i}'>`;
+  } else if (i === 1) {
+    return `<img src='${cherry}' alt='${i}'>`;
+  } else if (i === 2) {
+    return `<img src='${grapes}' alt='${i}'>`;
+  } else if (i === 3) {
+    return `<img src='${lemon}' alt='${i}'>`;
+  } else if (i === 4) {
+    return `<img src='${orange}' alt='${i}'>`;
+  } else if (i === 5) {
+    return `<img src='${plum}' alt='${i}'>`;
+  } else if (i === 6) {
+    return `<img src='${watermelon}' alt='${i}'>`;
+  } else if (i === 7) {
+    return `<img src='${seven}' alt='${i}'>`;
+  } else {
+    return i;
+  }
+})}`;
+
+// Show balance + bet
+const targetBalance = document.getElementById("balance");
+targetBalance.textContent = BALANCE.toFixed(2);
+const betDisplay = document.getElementById("bet");
+betDisplay.textContent = currentBet;
+// buttons
+
 const playButton = document.getElementById("play");
 playButton.addEventListener("click", () => {
+  playButton.disabled = true;
+  lowerBet.disabled = true;
+  raiseBet.disabled = true;
+  animate();
   winningCombinations();
 });
+const lowerBet = document.getElementById("lowerBet");
+const raiseBet = document.getElementById("raiseBet");
+lowerBet.addEventListener("click", () => {
+  if (currentBet <= 1) {
+    return;
+  }
+  currentBet--;
+  betDisplay.textContent = currentBet;
+});
+raiseBet.addEventListener("click", () => {
+  currentBet++;
+  betDisplay.textContent = currentBet;
+});
 
+// animate
+function animate() {
+  COL1.classList.add("spin-start");
+  COL2.classList.add("spin-start");
+  COL3.classList.add("spin-start");
+
+  setTimeout(() => {
+    COL1.classList.remove("spin-start");
+    COL2.classList.remove("spin-start");
+    COL3.classList.remove("spin-start");
+  }, delay);
+}
 //
 function winningCombinations() {
   // Check if last 3 numbers in the columns match
@@ -106,6 +204,7 @@ function winningCombinations() {
 
   // Starting with dec the balance
   BALANCE--;
+  targetBalance.textContent = BALANCE.toFixed(2);
   // rows
   if (R1C1 === R1C2 && R1C2 === R1C3) {
     console.log("first row wins");
@@ -137,6 +236,10 @@ function winningCombinations() {
     console.log("^");
     BALANCE++;
   }
-
-  targetBalance.textContent = BALANCE.toFixed(2) + "lv.";
+  setTimeout(() => {
+    targetBalance.textContent = BALANCE.toFixed(2);
+    playButton.disabled = false;
+    lowerBet.disabled = false;
+    raiseBet.disabled = false;
+  }, delay);
 }
