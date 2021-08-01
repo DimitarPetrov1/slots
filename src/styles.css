@@ -24,6 +24,8 @@
 .slots-window {
   position: absolute;
   left: 50%;
+  overflow: hidden;
+  width: 126px;
   transform: translate(-50%) rotate(-90deg);
 }
 
@@ -40,15 +42,15 @@
   width: 300%;
 }
 
-.spin-start {
-  animation: colMove 1s;
-}
-
 .column img {
   transform: rotate(90deg);
   width: 30px;
   height: 30px;
   object-fit: contain;
+}
+
+.spin-start {
+  animation: colMove 1s, windowMove 1s;
 }
 
 #col1 {
