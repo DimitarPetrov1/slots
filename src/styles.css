@@ -30,17 +30,22 @@
   transform: translate(-50%) rotate(-90deg);
 }
 
+.outer-column {
+  background: white;
+  overflow: hidden;
+}
+
 .column {
   display: flex;
   justify-content: flex-start;
   align-content: center;
-  background: rgb(255, 242, 170);
   padding: 20px;
   margin: 4px;
   color: transparent;
   position: relative;
   left: 0;
   width: 100%;
+  background: url("");
 }
 
 .column img {

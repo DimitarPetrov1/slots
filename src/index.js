@@ -10,15 +10,20 @@ import {
   watermelon,
   seven
 } from "./data";
+import {
+  COL1,
+  COL2,
+  COL3,
+  multiplierGroupOne,
+  multiplierGroupTwo,
+  multiplierSeven
+} from "./vars";
 
 let currentBet = 1;
 let BALANCE = 100;
 let delay = 1900;
 
 // Generate columns
-let COL1 = document.getElementById("col1");
-let COL2 = document.getElementById("col2");
-let COL3 = document.getElementById("col3");
 
 COL1.innerHTML = `
 <img src='${seven}' alt='${7}'>
@@ -48,7 +53,6 @@ targetBalance.textContent = BALANCE;
 const betDisplay = document.getElementById("bet");
 betDisplay.textContent = currentBet;
 const wonDisplay = document.getElementById("won");
-// wonDisplay.textContent = 0;
 // buttons
 
 const playButton = document.getElementById("play");
@@ -95,19 +99,19 @@ function winningCombinations() {
   // Check if last 3 numbers in the columns match
   COL1.innerHTML = `${generateColumn().map((i) => {
     if (i === 0) {
-      return `<img src='${apple}' alt='${i}'>`;
-    } else if (i === 1) {
-      return `<img src='${cherry}' alt='${i}'>`;
-    } else if (i === 2) {
-      return `<img src='${grapes}' alt='${i}'>`;
-    } else if (i === 3) {
       return `<img src='${lemon}' alt='${i}'>`;
-    } else if (i === 4) {
+    } else if (i === 1) {
       return `<img src='${orange}' alt='${i}'>`;
-    } else if (i === 5) {
+    } else if (i === 2) {
+      return `<img src='${cherry}' alt='${i}'>`;
+    } else if (i === 3) {
+      return `<img src='${apple}' alt='${i}'>`;
+    } else if (i === 4) {
       return `<img src='${plum}' alt='${i}'>`;
-    } else if (i === 6) {
+    } else if (i === 5) {
       return `<img src='${watermelon}' alt='${i}'>`;
+    } else if (i === 6) {
+      return `<img src='${grapes}' alt='${i}'>`;
     } else if (i === 7) {
       return `<img src='${seven}' alt='${i}'>`;
     } else {
@@ -116,19 +120,19 @@ function winningCombinations() {
   })}`;
   COL2.innerHTML = `${generateColumn().map((i) => {
     if (i === 0) {
-      return `<img src='${apple}' alt='${i}'>`;
-    } else if (i === 1) {
-      return `<img src='${cherry}' alt='${i}'>`;
-    } else if (i === 2) {
-      return `<img src='${grapes}' alt='${i}'>`;
-    } else if (i === 3) {
       return `<img src='${lemon}' alt='${i}'>`;
-    } else if (i === 4) {
+    } else if (i === 1) {
       return `<img src='${orange}' alt='${i}'>`;
-    } else if (i === 5) {
+    } else if (i === 2) {
+      return `<img src='${cherry}' alt='${i}'>`;
+    } else if (i === 3) {
+      return `<img src='${apple}' alt='${i}'>`;
+    } else if (i === 4) {
       return `<img src='${plum}' alt='${i}'>`;
-    } else if (i === 6) {
+    } else if (i === 5) {
       return `<img src='${watermelon}' alt='${i}'>`;
+    } else if (i === 6) {
+      return `<img src='${grapes}' alt='${i}'>`;
     } else if (i === 7) {
       return `<img src='${seven}' alt='${i}'>`;
     } else {
@@ -137,19 +141,19 @@ function winningCombinations() {
   })}`;
   COL3.innerHTML = `${generateColumn().map((i) => {
     if (i === 0) {
-      return `<img src='${apple}' alt='${i}'>`;
-    } else if (i === 1) {
-      return `<img src='${cherry}' alt='${i}'>`;
-    } else if (i === 2) {
-      return `<img src='${grapes}' alt='${i}'>`;
-    } else if (i === 3) {
       return `<img src='${lemon}' alt='${i}'>`;
-    } else if (i === 4) {
+    } else if (i === 1) {
       return `<img src='${orange}' alt='${i}'>`;
-    } else if (i === 5) {
+    } else if (i === 2) {
+      return `<img src='${cherry}' alt='${i}'>`;
+    } else if (i === 3) {
+      return `<img src='${apple}' alt='${i}'>`;
+    } else if (i === 4) {
       return `<img src='${plum}' alt='${i}'>`;
-    } else if (i === 6) {
+    } else if (i === 5) {
       return `<img src='${watermelon}' alt='${i}'>`;
+    } else if (i === 6) {
+      return `<img src='${grapes}' alt='${i}'>`;
     } else if (i === 7) {
       return `<img src='${seven}' alt='${i}'>`;
     } else {
@@ -182,9 +186,22 @@ function winningCombinations() {
   BALANCE -= currentBet;
   targetBalance.textContent = BALANCE;
   // rows
+
   if (R1C1 === R1C2 && R1C2 === R1C3) {
-    BALANCE += currentBet * 2;
-    wonAmount += currentBet * 2;
+    let result = Number(R1C1);
+
+    if (result <= 4) {
+      BALANCE += currentBet * multiplierGroupOne;
+      wonAmount += currentBet * multiplierGroupOne;
+    }
+    if (result === 5 || result === 6) {
+      BALANCE += currentBet * multiplierGroupTwo;
+      wonAmount += currentBet * multiplierGroupTwo;
+    }
+    if (result === 7) {
+      BALANCE += currentBet * multiplierSeven;
+      wonAmount += currentBet * multiplierSeven;
+    }
     setTimeout(() => {
       R1C1i.classList.add("winning-img");
       R1C2i.classList.add("winning-img");
@@ -192,8 +209,17 @@ function winningCombinations() {
     }, delay);
   }
   if (R2C1 === R2C2 && R2C2 === R2C3) {
-    BALANCE += currentBet * 2;
-    wonAmount += currentBet * 2;
+    let result = Number(R2C1);
+    if (result <= 4) {
+      BALANCE += currentBet * multiplierGroupOne;
+      wonAmount += currentBet * multiplierGroupOne;
+    } else if (result === 5 || result === 6) {
+      BALANCE += currentBet * multiplierGroupTwo;
+      wonAmount += currentBet * multiplierGroupTwo;
+    } else if (result === 7) {
+      BALANCE += currentBet * multiplierSeven;
+      wonAmount += currentBet * multiplierSeven;
+    }
     setTimeout(() => {
       R2C1i.classList.add("winning-img");
       R2C2i.classList.add("winning-img");
@@ -201,8 +227,19 @@ function winningCombinations() {
     }, delay);
   }
   if (R3C1 === R3C2 && R3C2 === R3C3) {
-    BALANCE += currentBet * 2;
-    wonAmount += currentBet * 2;
+    let result = Number(R3C1);
+    if (result <= 4) {
+      BALANCE += currentBet * multiplierGroupOne;
+      wonAmount += currentBet * multiplierGroupOne;
+    }
+    if (result === 5 || result === 6) {
+      BALANCE += currentBet * multiplierGroupTwo;
+      wonAmount += currentBet * multiplierGroupTwo;
+    }
+    if (result === 7) {
+      BALANCE += currentBet * multiplierSeven;
+      wonAmount += currentBet * multiplierSeven;
+    }
     setTimeout(() => {
       R3C1i.classList.add("winning-img");
       R3C2i.classList.add("winning-img");
@@ -211,8 +248,19 @@ function winningCombinations() {
   }
   // // X shape
   if (R1C1 === R2C2 && R2C2 === R3C3) {
-    BALANCE += currentBet * 2;
-    wonAmount += currentBet * 2;
+    let result = Number(R1C1);
+    if (result <= 4) {
+      BALANCE += currentBet * multiplierGroupOne;
+      wonAmount += currentBet * multiplierGroupOne;
+    }
+    if (result === 5 || result === 6) {
+      BALANCE += currentBet * multiplierGroupTwo;
+      wonAmount += currentBet * multiplierGroupTwo;
+    }
+    if (result === 7) {
+      BALANCE += currentBet * multiplierSeven;
+      wonAmount += currentBet * multiplierSeven;
+    }
     setTimeout(() => {
       R1C1i.classList.add("winning-img");
       R2C2i.classList.add("winning-img");
@@ -220,8 +268,19 @@ function winningCombinations() {
     }, delay);
   }
   if (R1C3 === R2C2 && R2C2 === R3C1) {
-    BALANCE += currentBet * 2;
-    wonAmount += currentBet * 2;
+    let result = Number(R1C3);
+    if (result <= 4) {
+      BALANCE += currentBet * multiplierGroupOne;
+      wonAmount += currentBet * multiplierGroupOne;
+    }
+    if (result === 5 || result === 6) {
+      BALANCE += currentBet * multiplierGroupTwo;
+      wonAmount += currentBet * multiplierGroupTwo;
+    }
+    if (result === 7) {
+      BALANCE += currentBet * multiplierSeven;
+      wonAmount += currentBet * multiplierSeven;
+    }
     setTimeout(() => {
       R1C3i.classList.add("winning-img");
       R2C2i.classList.add("winning-img");
@@ -230,8 +289,19 @@ function winningCombinations() {
   }
   // ^ and v shape
   if (R1C1 === R2C2 && R2C2 === R1C3) {
-    BALANCE += currentBet * 2;
-    wonAmount += currentBet * 2;
+    let result = Number(R1C1);
+    if (result <= 4) {
+      BALANCE += currentBet * multiplierGroupOne;
+      wonAmount += currentBet * multiplierGroupOne;
+    }
+    if (result === 5 || result === 6) {
+      BALANCE += currentBet * multiplierGroupTwo;
+      wonAmount += currentBet * multiplierGroupTwo;
+    }
+    if (result === 7) {
+      BALANCE += currentBet * multiplierSeven;
+      wonAmount += currentBet * multiplierSeven;
+    }
     setTimeout(() => {
       R1C1i.classList.add("winning-img");
       R2C2i.classList.add("winning-img");
@@ -239,8 +309,19 @@ function winningCombinations() {
     }, delay);
   }
   if (R3C1 === R2C2 && R2C2 === R3C3) {
-    BALANCE += currentBet * 2;
-    wonAmount += currentBet * 2;
+    let result = Number(R3C1);
+    if (result <= 4) {
+      BALANCE += currentBet * multiplierGroupOne;
+      wonAmount += currentBet * multiplierGroupOne;
+    }
+    if (result === 5 || result === 6) {
+      BALANCE += currentBet * multiplierGroupTwo;
+      wonAmount += currentBet * multiplierGroupTwo;
+    }
+    if (result === 7) {
+      BALANCE += currentBet * multiplierSeven;
+      wonAmount += currentBet * multiplierSeven;
+    }
     setTimeout(() => {
       R3C1i.classList.add("winning-img");
       R2C2i.classList.add("winning-img");
